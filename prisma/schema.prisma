@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String
+  cohort      String
+  courses     String[]
+  date_joined DateTime @db.Timestamp(6)
+  last_login  DateTime @db.Timestamp(6)
+  status      String
+
+  @@map("students")
+}

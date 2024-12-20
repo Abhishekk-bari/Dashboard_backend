@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const cors = require("cors");
 const { PrismaClient } = require("@prisma/client");
@@ -8,7 +10,7 @@ const prisma = new PrismaClient();
 app.use(cors());
 app.use(express.json());
 
-// Fetch all students
+// Fetch all student's
 app.get("/students", async (req, res) => {
   try {
     const students = await prisma.student.findMany();
